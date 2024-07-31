@@ -1,0 +1,22 @@
+{
+    'name': 'Market Management System',
+    'version': '1.0',
+    'summary': ' ',
+    'description': """ """,
+    'author': 'Rayhan',
+    'website': 'shajgoj.com',
+    'category': 'Management',
+    'depends': ['base'],
+    'data': [
+        'security/market_management_security.xml',
+        'security/ir.model.access.csv',
+        'views/market_views.xml',
+        # 'views/location.xml',
+        'views/shop_views.xml',
+        'views/actions.xml',
+        'views/menu.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

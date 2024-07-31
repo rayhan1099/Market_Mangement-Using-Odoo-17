@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Market Management Menu -->
+    <menuitem id="market_management_menu"
+              name="Market Management"
+              sequence="17"/>
+
+    <!-- Markets Submenu -->
+    <menuitem id="menu_market"
+              name="Markets"
+              parent="market_management_menu"
+              action="action_market"
+              sequence="18"/>
+
+    <!-- Locations Submenu under Markets -->
+    <!--    <menuitem id="menu_location"-->
+    <!--              name="Locations"-->
+    <!--              parent="menu_market"-->
+    <!--              action="action_location"-->
+    <!--              sequence="19"/>-->
+
+    <!-- Shops Submenu under Markets -->
+    <menuitem id="menu_shop"
+              name="Shops"
+              parent="market_management_menu"
+              action="action_shop"
+              sequence="20"/>
+</odoo>

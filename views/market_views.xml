@@ -1,0 +1,50 @@
+<odoo>
+    <!-- Market Model Views -->
+    <record id="view_market_tree" model="ir.ui.view">
+        <field name="name">market.tree</field>
+        <field name="model">market.market</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="total_shops"/>
+                <field name="total_floors"/>
+                <field name="available_shops"/>
+                <field name="unavailable_shops"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_market_form" model="ir.ui.view">
+        <field name="name">market.form</field>
+        <field name="model">market.market</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="total_shops"/>
+                        <field name="total_floors"/>
+                        <field name="available_shops"/>
+<!--                        <field name="shop_ids"/>-->
+                        <field name="unavailable_shops"/>
+                        <field name="total_shops_per_floor" readonly="1"/>
+                        <field name="total_shops_by_block" readonly="1"/>
+
+                    </group>
+                    <notebook>
+                        <page string="Shops">
+                           <field name="shop_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="rent"/>
+                                    <field name="state"/>
+                                    <field name="floor"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<odoo>
+    <!-- Market Management Actions -->
+    <record id="action_market" model="ir.actions.act_window">
+        <field name="name">Markets</field>
+        <field name="res_model">market.market</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_market_tree"/>
+    </record>
+
+    <record id="action_shop" model="ir.actions.act_window">
+        <field name="name">Shops</field>
+        <field name="res_model">market.shop</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_shop_tree"/>
+    </record>
+<!--     <record id="action_location" model="ir.actions.act_window">-->
+<!--            <field name="name">Locations</field>-->
+<!--            <field name="res_model">market_management.location</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+</odoo>

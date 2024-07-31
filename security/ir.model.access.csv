@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_market_user,market.user,model_market_market,group_market_management_user,1,1,1,1
+access_market_manager,market.manager,model_market_market,group_market_management_manager,1,1,1,1
+access_shop_user,shop.user,model_market_shop,group_market_management_user,1,1,1,1
+access_shop_manager,shop.manager,model_market_shop,group_market_management_manager,1,1,1
