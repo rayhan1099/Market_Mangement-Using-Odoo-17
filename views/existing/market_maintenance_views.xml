@@ -1,0 +1,99 @@
+<odoo>
+    <!-- Maintenance Request Tree View -->
+    <record id="view_maintenance_tree" model="ir.ui.view">
+        <field name="name">market.maintenance.tree</field>
+        <field name="model">market.maintenance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="tenant_id"/>
+                <field name="request_date"/>
+                <field name="state"/>
+                <field name="total_cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Maintenance Request Form View -->
+    <record id="view_maintenance_form" model="ir.ui.view">
+        <field name="name">market.maintenance.form</field>
+        <field name="model">market.maintenance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="tenant_id"/>
+                        <field name="request_date"/>
+                        <field name="description"/>
+                        <field name="state"/>
+                        <field name="total_cost" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Repair Jobs">
+                            <field name="repair_job_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="job_date"/>
+                                    <field name="description"/>
+                                    <field name="cost"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Repair Job Tree View -->
+    <record id="view_repair_job_tree" model="ir.ui.view">
+        <field name="name">market.maintenance.repair.tree</field>
+        <field name="model">market.maintenance.repair</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="maintenance_id"/>
+                <field name="job_date"/>
+                <field name="cost"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Repair Job Form View -->
+    <record id="view_repair_job_form" model="ir.ui.view">
+        <field name="name">market.maintenance.repair.form</field>
+        <field name="model">market.maintenance.repair</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="maintenance_id"/>
+                        <field name="job_date"/>
+                        <field name="description"/>
+                        <field name="cost"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Maintenance Requests -->
+    <record id="action_market_maintenance" model="ir.actions.act_window">
+        <field name="name">Maintenance Requests</field>
+        <field name="res_model">market.maintenance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first maintenance request
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item for Maintenance Management -->
+    <menuitem id="menu_market_maintenance" name="Maintenance Management" parent="market.menu_market_root" action="action_market_maintenance"/>
+</odoo>

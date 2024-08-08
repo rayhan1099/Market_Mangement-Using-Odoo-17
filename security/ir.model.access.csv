@@ -3,3 +3,11 @@ access_market_user,market.user,model_market_market,group_market_management_user,
 access_market_manager,market.manager,model_market_market,group_market_management_manager,1,1,1,1
 access_shop_user,shop.user,model_market_shop,group_market_management_user,1,1,1,1
 access_shop_manager,shop.manager,model_market_shop,group_market_management_manager,1,1,1
+access_bill_user,bill.user,model_shop_bill,group_market_management_user,1,1,1,1
+access_bill_manager,bill.manager,model_shop_bill,group_market_management_user,1,1,1,1
+access_tenant_user,tenant.user,model_shop_tenant,group_market_management_user,1,1,1,1
+access_tenant_manager,tenant.manager,model_shop_tenant,group_market_management_manager,1,1,1,1
+access_staff_management_user,staff.management.user,model_staff_management,group_market_management_user,1,1,1,1
+access_staff_management_manager,staff.management.manager,model_staff_management,group_market_management_manager,1,1,1,1
+access_lease_agreement_user,lease.agreement.user,model_lease_agreement,group_market_management_user,1,1,1,1
+access_lease_agreement_manager,lease.agreement.manager,model_lease_agreement,group_market_management_manager,1,1,1,1

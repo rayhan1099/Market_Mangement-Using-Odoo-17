@@ -12,6 +12,8 @@ class MarketMarket(models.Model):
     unavailable_shops = fields.Integer(string='Unavailable Shops', compute='_compute_shop_availability')
     total_shops_per_floor = fields.Text(string='Total Shops Per Floor', compute='_compute_total_shops_per_floor')
     total_shops_by_block = fields.Text(string='Total Shops By Block', compute='_compute_total_shops_by_block')
+    monthly_revenue = fields.Float(string='Monthly Revenue', compute='_compute_monthly_revenue')
+    monthly_expenses = fields.Float(string='Monthly Expenses', compute='_compute_monthly_expenses')
 
     @api.depends('shop_ids')
     def _compute_total_shops_per_floor(self):
@@ -36,6 +38,7 @@ class MarketMarket(models.Model):
             record.available_shops = available
             record.unavailable_shops = record.total_shops - available
 
+    @api.depends('shop_ids')
     def _compute_total_floors(self):
         for market in self:
             floors = set()
@@ -43,6 +46,7 @@ class MarketMarket(models.Model):
                 if shop.floor:
                     floors.add(shop.floor)
             market.total_floors = len(floors)
+
     @api.depends('shop_ids')
     def _compute_total_shops_by_block(self):
         for market in self:
@@ -53,3 +57,14 @@ class MarketMarket(models.Model):
                 block_counts[shop.blocks] += 1
             market.total_shops_by_block = ', '.join(
                 f'Block {block}: {count} shops' for block, count in block_counts.items())
+
+    @api.depends('shop_ids.rent')
+    def _compute_monthly_revenue(self):
+        for market in self:
+            revenue = sum(shop.rent for shop in market.shop_ids.filtered(lambda s: s.state == 'unavailable'))
+            market.monthly_revenue = revenue
+    @api.depends('shop_ids')
+    def _compute_monthly_expenses(self):
+        # Implement logic to calculate monthly expenses
+        for market in self:
+            market.monthly_expenses = 0.0  # Placeholder

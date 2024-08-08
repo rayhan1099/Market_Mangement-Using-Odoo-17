@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Market Management Menu -->
     <menuitem id="market_management_menu"
               name="Market Management"
               sequence="17"/>
+    <menuitem id="menu_market_root_menu"
+              name="Market"
+              parent="market_management_menu"/>
 
-    <!-- Markets Submenu -->
     <menuitem id="menu_market"
               name="Markets"
-              parent="market_management_menu"
+              parent="menu_market_root_menu"
               action="action_market"
-              sequence="18"/>
-
-    <!-- Locations Submenu under Markets -->
-    <!--    <menuitem id="menu_location"-->
-    <!--              name="Locations"-->
-    <!--              parent="menu_market"-->
-    <!--              action="action_location"-->
-    <!--              sequence="19"/>-->
-
-    <!-- Shops Submenu under Markets -->
-    <menuitem id="menu_shop"
+              sequence="19"/>
+    <menuitem id="menu_shop_root"
               name="Shops"
               parent="market_management_menu"
-              action="action_shop"
               sequence="20"/>
+     <menuitem id="menu_Bill"
+              name="Bill"
+              parent="menu_market_root_menu"
+              action="action_shop_bill"
+              sequence="21"/>
+        <menuitem id="menu_shop"
+              name="Shops"
+              parent="menu_shop_root"
+              action="action_shop"
+             />
+      <menuitem id="menu_shop_tenant"
+                  name="Shop Tenant"
+                  parent="menu_shop_root"
+                  action="action_shop_tenant"
+                  />
+
+    <menuitem id="menu_staff_management"
+              name="Staff"
+              parent="menu_market_root_menu"
+              action="action_staff_management"/>
+    <menuitem id="menu_lease_agreement"
+              name="Lease Agreements"
+              parent="menu_shop_root"
+              action="action_lease_agreement" />
 </odoo>

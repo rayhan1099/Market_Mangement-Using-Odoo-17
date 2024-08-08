@@ -1,0 +1,60 @@
+<odoo>
+    <!-- Event Tree View -->
+    <record id="view_event_tree" model="ir.ui.view">
+        <field name="name">market.event.tree</field>
+        <field name="model">market.event</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="event_type"/>
+                <field name="attendance_count"/>
+                <field name="impact_on_sales"/>
+                <field name="foot_traffic_increase"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Event Form View -->
+    <record id="view_event_form" model="ir.ui.view">
+        <field name="name">market.event.form</field>
+        <field name="model">market.event</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="description"/>
+                        <field name="event_type"/>
+                        <field name="attendance_count" readonly="1"/>
+                        <field name="impact_on_sales" readonly="1"/>
+                        <field name="foot_traffic_increase" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Shops Involved">
+                            <field name="shop_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Events -->
+    <record id="action_market_event" model="ir.actions.act_window">
+        <field name="name">Events and Promotions</field>
+        <field name="res_model">market.event</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first event or promotion
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item for Event Management -->
+    <menuitem id="menu_market_event" name="Event Management" parent="market.menu_market_root" action="action_market_event"/>
+</odoo>

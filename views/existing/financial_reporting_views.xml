@@ -1,0 +1,54 @@
+<odoo>
+    <!-- Financial Reporting Tree View -->
+    <record id="view_financial_report_tree" model="ir.ui.view">
+        <field name="name">financial.reporting.tree</field>
+        <field name="model">financial.reporting</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="total_revenue"/>
+                <field name="total_expenses"/>
+                <field name="profit_margin"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Financial Reporting Form View -->
+    <record id="view_financial_report_form" model="ir.ui.view">
+        <field name="name">financial.reporting.form</field>
+        <field name="model">financial.reporting</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="total_revenue" readonly="1"/>
+                        <field name="total_expenses" readonly="1"/>
+                        <field name="profit_margin" readonly="1"/>
+                        <field name="revenue_expenses_report" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Financial Reporting -->
+    <record id="action_financial_reporting" model="ir.actions.act_window">
+        <field name="name">Financial Reporting</field>
+        <field name="res_model">financial.reporting</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate and analyze financial reports including revenue, expenses, and profit margins.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items for Financial Reporting -->
+    <menuitem id="menu_financial_reporting" name="Financial Reporting" parent="market.menu_market_root"/>
+    <menuitem id="menu_financial_reports" name="Reports" parent="menu_financial_reporting" action="action_financial_reporting"/>
+</odoo>

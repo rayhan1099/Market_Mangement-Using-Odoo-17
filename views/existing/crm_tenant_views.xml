@@ -1,0 +1,78 @@
+<odoo>
+    <!-- CRM Tenant Tree View -->
+    <record id="view_crm_tenant_tree" model="ir.ui.view">
+        <field name="name">crm.tenant.tree</field>
+        <field name="model">crm.tenant</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="contact_details"/>
+                <field name="potential"/>
+                <field name="current"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- CRM Tenant Form View -->
+    <record id="view_crm_tenant_form" model="ir.ui.view">
+        <field name="name">crm.tenant.form</field>
+        <field name="model">crm.tenant</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="contact_details"/>
+                        <field name="potential"/>
+                        <field name="current"/>
+                    </group>
+                    <notebook>
+                        <page string="Communication History">
+                            <field name="communication_history_ids">
+                                <tree>
+                                    <field name="communication_date"/>
+                                    <field name="communication_type"/>
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Follow-up Tasks">
+                            <field name="follow_up_task_ids">
+                                <tree>
+                                    <field name="task_date"/>
+                                    <field name="task_description"/>
+                                    <field name="completed"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Marketing Automation">
+                            <field name="marketing_automation_ids">
+                                <tree>
+                                    <field name="campaign_name"/>
+                                    <field name="campaign_date"/>
+                                    <field name="response_received"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open CRM Tenant -->
+    <record id="action_crm_tenant" model="ir.actions.act_window">
+        <field name="name">CRM Tenants</field>
+        <field name="res_model">crm.tenant</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage your interactions with potential and current tenants.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items for CRM Management -->
+    <menuitem id="menu_crm_management" name="CRM Management" parent="market.menu_market_root"/>
+    <menuitem id="menu_crm_tenant" name="Tenants" parent="menu_crm_management" action="action_crm_tenant"/>
+</odoo>

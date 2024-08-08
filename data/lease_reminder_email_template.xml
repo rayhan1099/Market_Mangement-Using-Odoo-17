@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="lease_reminder_email_template" model="mail.template">
+            <field name="name">Lease Reminder</field>
+            <field name="model_id" ref="model_lease_agreement"/>
+            <field name="subject">Lease Agreement Reminder</field>
+            <field name="email_from">${(user.email_formatted or user.company_id.email_formatted) if user else ''}</field>
+            <field name="email_to">${object.tenant_id.email|safe}</field>
+            <field name="body_html" type="html">
+                <![CDATA[
+                    <p>Hello ${object.tenant_id.name},</p>
+                    <p>This is a reminder that your lease agreement for the shop ${object.shop_id.name} is ending on ${object.end_date}.</p>
+                    <p>Please contact us to renew your lease or discuss any further details.</p>
+                    <p>Thank you,</p>
+                    <p>${(user.company_id.name or '') if user else ''}</p>
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

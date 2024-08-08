@@ -10,6 +10,8 @@
                 <field name="total_floors"/>
                 <field name="available_shops"/>
                 <field name="unavailable_shops"/>
+                <field name="monthly_revenue"/>
+                <field name="monthly_expenses"/>
             </tree>
         </field>
     </record>
@@ -25,11 +27,11 @@
                         <field name="total_shops"/>
                         <field name="total_floors"/>
                         <field name="available_shops"/>
-<!--                        <field name="shop_ids"/>-->
                         <field name="unavailable_shops"/>
                         <field name="total_shops_per_floor" readonly="1"/>
                         <field name="total_shops_by_block" readonly="1"/>
-
+                        <field name="monthly_revenue" readonly="1"/>
+                        <field name="monthly_expenses" readonly="1"/>
                     </group>
                     <notebook>
                         <page string="Shops">

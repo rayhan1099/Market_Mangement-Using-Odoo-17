@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Shop Feedback Tree View -->
+    <record id="view_shop_feedback_tree" model="ir.ui.view">
+        <field name="name">shop.feedback.tree</field>
+        <field name="model">shop.feedback</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_name"/>
+                <field name="shop_id"/>
+                <field name="feedback_type"/>
+                <field name="description"/>
+                <field name="resolution_status"/>
+                <field name="feedback_date"/>
+                <field name="rating"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Shop Feedback Form View -->
+    <record id="view_shop_feedback_form" model="ir.ui.view">
+        <field name="name">shop.feedback.form</field>
+        <field name="model">shop.feedback</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="customer_name"/>
+                        <field name="shop_id"/>
+                        <field name="feedback_type"/>
+                        <field name="description"/>
+                        <field name="resolution_status"/>
+                        <field name="resolution_notes"/>
+                        <field name="feedback_date"/>
+                        <field name="rating"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Shop Feedbacks -->
+    <record id="action_shop_feedback" model="ir.actions.act_window">
+        <field name="name">Shop Feedbacks</field>
+        <field name="res_model">shop.feedback</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first shop feedback or complaint
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items for Feedback Management -->
+    <menuitem id="menu_feedback_management" name="Feedback Management" parent="market.menu_market_root"/>
+    <menuitem id="menu_shop_feedbacks" name="Shop Feedbacks" parent="menu_feedback_management" action="action_shop_feedback"/>
+</odoo>

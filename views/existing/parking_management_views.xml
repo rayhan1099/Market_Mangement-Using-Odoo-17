@@ -1,0 +1,109 @@
+<odoo>
+    <!-- Parking Space Tree View -->
+    <record id="view_parking_space_tree" model="ir.ui.view">
+        <field name="name">parking.space.tree</field>
+        <field name="model">parking.space</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="location"/>
+                <field name="type"/>
+                <field name="is_occupied"/>
+                <field name="allocated_to"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="parking_fee"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Parking Space Form View -->
+    <record id="view_parking_space_form" model="ir.ui.view">
+        <field name="name">parking.space.form</field>
+        <field name="model">parking.space</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="location"/>
+                        <field name="type"/>
+                        <field name="is_occupied" readonly="1"/>
+                        <field name="allocated_to"/>
+                        <field name="occupied_by"/>
+                        <field name="start_time"/>
+                        <field name="end_time"/>
+                        <field name="parking_fee" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Parking Transaction Tree View -->
+    <record id="view_parking_transaction_tree" model="ir.ui.view">
+        <field name="name">parking.transaction.tree</field>
+        <field name="model">parking.transaction</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="space_id"/>
+                <field name="tenant_id"/>
+                <field name="occupied_by"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="parking_fee"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Parking Transaction Form View -->
+    <record id="view_parking_transaction_form" model="ir.ui.view">
+        <field name="name">parking.transaction.form</field>
+        <field name="model">parking.transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="space_id"/>
+                        <field name="tenant_id"/>
+                        <field name="occupied_by"/>
+                        <field name="start_time"/>
+                        <field name="end_time"/>
+                        <field name="parking_fee" readonly="1"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Parking Spaces -->
+    <record id="action_parking_space" model="ir.actions.act_window">
+        <field name="name">Parking Spaces</field>
+        <field name="res_model">parking.space</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first parking space
+            </p>
+        </field>
+    </record>
+
+    <!-- Action to Open Parking Transactions -->
+    <record id="action_parking_transaction" model="ir.actions.act_window">
+        <field name="name">Parking Transactions</field>
+        <field name="res_model">parking.transaction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first parking transaction
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items for Parking Management -->
+    <menuitem id="menu_parking_management" name="Parking Management" parent="market.menu_market_root"/>
+    <menuitem id="menu_parking_spaces" name="Parking Spaces" parent="menu_parking_management" action="action_parking_space"/>
+    <menuitem id="menu_parking_transactions" name="Parking Transactions" parent="menu_parking_management" action="action_parking_transaction"/>
+</odoo>

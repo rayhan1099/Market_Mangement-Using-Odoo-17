@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_staff_management_form" model="ir.ui.view">
+        <field name="name">staff.management.form</field>
+        <field name="model">staff.management</field>
+        <field name="arch" type="xml">
+            <form string="Staff Management">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="market_id"/>
+                        <field name="staff_category"/>
+                        <field name="staff_type"/>
+                    </group>
+                    <notebook>
+                        <page string="Common Information">
+                            <group>
+                                <field name="contact_number"/>
+                                <field name="email"/>
+                                <field name="staff_salary"/>
+                                <field name="schedule"/>
+                            </group>
+                        </page>
+                        <page string="Security Information">
+                            <group>
+                                <field name="security_license_number"/>
+                                <field name="shift_hours"/>
+                            </group>
+                        </page>
+                        <page string="Maintenance Information">
+                            <group>
+                                <field name="maintenance_skills"/>
+                                <field name="certification_number"/>
+                            </group>
+                        </page>
+                        <page string="Admin Information">
+                            <group>
+                                <field name="department"/>
+                                <field name="office_location"/>
+                            </group>
+                        </page>
+                        <page string="Marketing Information">
+                            <group>
+                                <field name="campaigns_managed"/>
+                                <field name="marketing_skills"/>
+                            </group>
+                        </page>
+                        <page string="Cleaning Information">
+                            <group>
+                                <field name="cleaning_schedule"/>
+                                <field name="equipment_handled"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_staff_management_tree" model="ir.ui.view">
+        <field name="name">staff.management.tree</field>
+        <field name="model">staff.management</field>
+        <field name="arch" type="xml">
+            <tree string="Staff Management">
+                <field name="name"/>
+                <field name="market_id"/>
+                <field name="staff_category"/>
+                <field name="staff_type"/>
+                <field name="total_staff"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="staff_management_action" model="ir.actions.act_window">
+        <field name="name">Staff Management</field>
+        <field name="res_model">staff.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new staff management record.
+            </p>
+        </field>
+    </record>
+</odoo>

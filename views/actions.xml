@@ -13,9 +13,4 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_shop_tree"/>
     </record>
-<!--     <record id="action_location" model="ir.actions.act_window">-->
-<!--            <field name="name">Locations</field>-->
-<!--            <field name="res_model">market_management.location</field>-->
-<!--            <field name="view_mode">tree,form</field>-->
-<!--        </record>-->
 </odoo>

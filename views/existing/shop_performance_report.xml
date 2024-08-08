@@ -1,0 +1,42 @@
+<odoo>
+    <!-- Shop Performance Report -->
+    <record id="report_shop_performance" model="ir.actions.report">
+        <field name="name">Shop Performance Report</field>
+        <field name="model">shop.performance</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">market_management.report_shop_performance</field>
+        <field name="report_file">market_management.report_shop_performance</field>
+        <field name="print_report_name">"Shop Performance Report - %s" % (object.name)</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_shop_performance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <h2>Shop Performance Report</h2>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Shop</th>
+                                <th>Total Sales</th>
+                                <th>Shop Area</th>
+                                <th>Sales per Sq Ft</th>
+                                <th>Performance Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><t t-esc="o.shop_id.name"/></td>
+                                <td><t t-esc="o.sales"/></td>
+                                <td><t t-esc="o.area"/></td>
+                                <td><t t-esc="o.sales_per_sqft"/></td>
+                                <td><t t-esc="o.performance_date"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
