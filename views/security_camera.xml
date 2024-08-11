@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="view_security_camera_tree" model="ir.ui.view">
+        <field name="name">security.camera.tree</field>
+        <field name="model">security.camera</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="location"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Security Camera Form View -->
+    <record id="view_security_camera_form" model="ir.ui.view">
+        <field name="name">security.camera.form</field>
+        <field name="model">security.camera</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="location"/>
+                        <field name="monitored_spaces" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Security Camera Action -->
+    <record id="action_security_camera" model="ir.actions.act_window">
+        <field name="name">Security Cameras</field>
+        <field name="res_model">security.camera</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Security Camera
+            </p>
+        </field>
+    </record>
+</odoo>

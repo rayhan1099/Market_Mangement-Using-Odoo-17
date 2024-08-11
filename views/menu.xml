@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Market Management Menu -->
     <menuitem id="market_management_menu"
               name="Market Management"
               sequence="17"/>
+
+    <!-- Markets Submenu -->
     <menuitem id="menu_market_root_menu"
               name="Market"
               parent="market_management_menu"/>
@@ -16,28 +19,44 @@
               name="Shops"
               parent="market_management_menu"
               sequence="20"/>
-     <menuitem id="menu_Bill"
+    <menuitem id="menu_Bill"
               name="Bill"
               parent="menu_market_root_menu"
               action="action_shop_bill"
               sequence="21"/>
-        <menuitem id="menu_shop"
+    <menuitem id="menu_shop"
               name="Shops"
               parent="menu_shop_root"
               action="action_shop"
-             />
-      <menuitem id="menu_shop_tenant"
-                  name="Shop Tenant"
-                  parent="menu_shop_root"
-                  action="action_shop_tenant"
-                  />
+    />
+    <menuitem id="menu_shop_tenant"
+              name="Shop Tenant"
+              parent="menu_shop_root"
+              action="action_shop_tenant"
+    />
 
     <menuitem id="menu_staff_management"
               name="Staff"
               parent="menu_market_root_menu"
-              action="action_staff_management"/>
-    <menuitem id="menu_lease_agreement"
-              name="Lease Agreements"
-              parent="menu_shop_root"
-              action="action_lease_agreement" />
+              action="staff_management_action"/>
+      <menuitem id="menu_parking_management"
+              name="Parking"
+              parent="market_management_menu"/>
+
+    <menuitem id="menu_parking_transaction"
+              name="Parking Transactions"
+              parent="menu_parking_management"
+              action="parking_transaction_action"/>
+
+    <menuitem id="menu_parking_space"
+              name="Parking Spaces"
+              parent="menu_parking_management"
+              action="parking_space_action" />
+
+    <menuitem id="parking_security_menu"
+              name="Security Cameras"
+              parent="menu_parking_management"
+              action="action_security_camera"/>
+
+
 </odoo>

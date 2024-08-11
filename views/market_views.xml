@@ -15,7 +15,6 @@
             </tree>
         </field>
     </record>
-
     <record id="view_market_form" model="ir.ui.view">
         <field name="name">market.form</field>
         <field name="model">market.market</field>

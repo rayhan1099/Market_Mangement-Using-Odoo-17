@@ -10,6 +10,7 @@ class ShopTenant(models.Model):
     rent_start_date = fields.Date(string='Rent Start Date', required=True)
     rent_end_date = fields.Date(string='Rent End Date', required=True)
     shop_rent = fields.Float(string='Shop Rent', related='shop_id.rent', readonly=True)
+    is_shop_owner = fields.Boolean(string='Is Shop Owner', default=False)
 
     @api.model
     def create(self, vals):

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Define a sequence for parking transactions -->
+    <record id="seq_parking_transaction" model="ir.sequence">
+        <field name="name">Parking Transaction Sequence</field>
+        <field name="code">parking.transaction</field>
+        <field name="prefix">PT</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+        <field name="implementation">no_gap</field>
+    </record>
+
+    <!-- Define the view for parking transaction -->
+    <record id="view_parking_transaction_form" model="ir.ui.view">
+        <field name="name">parking.transaction.form</field>
+        <field name="model">parking.transaction</field>
+        <field name="arch" type="xml">
+            <form string="Parking Transaction">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="space_id"/>
+                            <field name="tenant_id"/>
+                            <field name="occupied_by"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="parking_fee"/>
+                        </group>
+                        <group>
+                            <field name="license_plate"/>
+                            <field name="reservation_priority"/>
+                            <field name="state"/>
+                            <field name="payment_method"/>
+                            <field name="transaction_reference_number" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_parking_transaction_tree" model="ir.ui.view">
+        <field name="name">parking.transaction.tree</field>
+        <field name="model">parking.transaction</field>
+        <field name="arch" type="xml">
+            <tree string="Parking Transactions">
+                <field name="transaction_reference_number"/>
+                <field name="space_id"/>
+                <field name="tenant_id"/>
+                <field name="occupied_by"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="parking_fee"/>
+                <field name="license_plate"/>
+                <field name="state"/>
+                <field name="payment_method"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Parking Transaction -->
+    <record id="parking_transaction_action" model="ir.actions.act_window">
+        <field name="name">Parking Transactions</field>
+        <field name="res_model">parking.transaction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_parking_transaction_tree"/>
+    </record>
+</odoo>

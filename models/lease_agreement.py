@@ -1,6 +1,5 @@
 from odoo import models, fields, api
-from datetime import datetime, timedelta
-
+from datetime import timedelta
 
 class LeaseAgreement(models.Model):
     _name = 'lease.agreement'
@@ -28,7 +27,7 @@ class LeaseAgreement(models.Model):
             elif record.state != 'terminated':
                 record.state = 'active'
 
-    @api.depends('end_date')
+    @api.depends('end_date', 'state')
     def _compute_reminder_date(self):
         for record in self:
             if record.end_date:
@@ -41,4 +40,8 @@ class LeaseAgreement(models.Model):
         agreements = self.search([('reminder_date', '=', today), ('state', '=', 'active')])
         for agreement in agreements:
             template = self.env.ref('your_module.lease_reminder_email_template')
-            self.env['mail.template'].browse(template.id).send_mail(agreement.id, force_send=True)
+            if template:
+                template.send_mail(agreement.id, force_send=True)
+            else:
+                # Handle case where template is not found
+                _logger.error("Lease reminder email template not found.")

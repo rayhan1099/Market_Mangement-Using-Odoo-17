@@ -12,22 +12,15 @@ class StaffManagement(models.Model):
         ('maintenance', 'Maintenance'),
         ('admin', 'Administration'),
         ('sales', 'Sales'),
-        ('cleaning', 'Cleaning')
+        ('cleaning', 'Cleaning'),
     ], string='Staff Category', required=True)
-
-    staff_type = fields.Selection([
-        ('security', 'Security'),
-        ('maintenance', 'Maintenance'),
-        ('admin', 'Admin'),
-        ('marketing', 'Marketing'),
-        ('cleaning', 'Cleaning')
-    ], string='Staff Type', required=True)
 
     # Common fields
     contact_number = fields.Char(string='Contact Number')
     email = fields.Char(string='Email')
     staff_salary = fields.Float(string='Salary')
-    schedule = fields.Datetime(string='Schedule')
+    start_date = fields.Datetime(string='Start Date')
+    end_date = fields.Datetime(string='End Date')
 
     # Security specific fields
     security_license_number = fields.Char(string='Security License Number')
@@ -41,7 +34,7 @@ class StaffManagement(models.Model):
     department = fields.Char(string='Department')
     office_location = fields.Char(string='Office Location')
 
-    # Marketing specific fields
+    # Sales specific fields
     campaigns_managed = fields.Integer(string='Number of Campaigns Managed')
     marketing_skills = fields.Text(string='Marketing Skills')
 
@@ -61,39 +54,25 @@ class StaffManagement(models.Model):
 
     @api.onchange('staff_category')
     def _onchange_staff_category(self):
-        staff_type_options = {
-            'security': [('security', 'Security')],
-            'maintenance': [('maintenance', 'Maintenance')],
-            'admin': [('admin', 'Admin')],
-            'sales': [('marketing', 'Marketing')],
-            'cleaning': [('cleaning', 'Cleaning')]
+        staff_category_fields = {
+            'security': ['security_license_number', 'shift_hours'],
+            'maintenance': ['maintenance_skills', 'certification_number'],
+            'admin': ['department', 'office_location'],
+            'sales': ['campaigns_managed', 'marketing_skills'],
+            'cleaning': ['cleaning_schedule', 'equipment_handled'],
         }
-        self.staff_type = False
-        return {'domain': {'staff_type': staff_type_options.get(self.staff_category, [])}}
 
-    @api.onchange('staff_type')
-    def _onchange_staff_type(self):
-        # Clear fields that are not relevant for the selected staff type
-        if self.staff_type == 'security':
-            self._clear_fields_except(['security_license_number', 'shift_hours'])
-        elif self.staff_type == 'maintenance':
-            self._clear_fields_except(['maintenance_skills', 'certification_number'])
-        elif self.staff_type == 'admin':
-            self._clear_fields_except(['department', 'office_location'])
-        elif self.staff_type == 'marketing':
-            self._clear_fields_except(['campaigns_managed', 'marketing_skills'])
-        elif self.staff_type == 'cleaning':
-            self._clear_fields_except(['cleaning_schedule', 'equipment_handled'])
+        # Get the fields to be shown for the selected category
+        fields_to_show = staff_category_fields.get(self.staff_category, [])
 
-    def _clear_fields_except(self, allowed_fields):
-        # List of all specific fields
-        all_fields = [
-            'security_license_number', 'shift_hours',
-            'maintenance_skills', 'certification_number',
-            'department', 'office_location',
-            'campaigns_managed', 'marketing_skills',
-            'cleaning_schedule', 'equipment_handled'
-        ]
-        for field in all_fields:
-            if field not in allowed_fields:
-                setattr(self, field, False)
+        # Clear all fields first
+        for field in staff_category_fields.values():
+            for field_name in field:
+                setattr(self, field_name, False)
+
+        # Show fields specific to the selected category
+        return {
+            'fields': {
+                field: {'required': True} for field in fields_to_show
+            }
+        }

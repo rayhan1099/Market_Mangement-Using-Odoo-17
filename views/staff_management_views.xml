@@ -8,47 +8,75 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="market_id"/>
+                        <field name="market_id" options="{'no_create': True}"/>
                         <field name="staff_category"/>
-                        <field name="staff_type"/>
                     </group>
                     <notebook>
+                        <!-- Common Information Page -->
                         <page string="Common Information">
                             <group>
                                 <field name="contact_number"/>
                                 <field name="email"/>
                                 <field name="staff_salary"/>
-                                <field name="schedule"/>
+                            </group>
+                            <group string ="schedule">
+                                <field name="start_date"/>
+                                <field name="end_date"/>
                             </group>
                         </page>
-                        <page string="Security Information">
+
+                        <!-- Security Information Page -->
+                        <page string="Security Information"
+                              invisible="staff_category != 'security'">
                             <group>
-                                <field name="security_license_number"/>
-                                <field name="shift_hours"/>
+                                <field name="security_license_number"
+                                       required="staff_category == 'security'"/>
+                                <field name="shift_hours"
+                                       required="staff_category == 'security'"/>
                             </group>
                         </page>
-                        <page string="Maintenance Information">
+
+                        <!-- Maintenance Information Page -->
+                        <page string="Maintenance Information"
+                              invisible="staff_category != 'maintenance'">
                             <group>
-                                <field name="maintenance_skills"/>
-                                <field name="certification_number"/>
+                                <field name="maintenance_skills"
+                                       required="staff_category == 'maintenance'"/>
+                                <field name="certification_number"
+                                       required="staff_category == 'maintenance'"/>
                             </group>
                         </page>
-                        <page string="Admin Information">
+
+                        <!-- Admin Information Page -->
+                        <page string="Admin Information"
+                              invisible="staff_category != 'admin'">
                             <group>
-                                <field name="department"/>
-                                <field name="office_location"/>
+                                <field name="department"
+                                       required="staff_category == 'admin'"/>
+                                <field name="office_location"
+                                       required="staff_category == 'admin'"/>
                             </group>
                         </page>
-                        <page string="Marketing Information">
+
+                        <!-- Sales Information Page -->
+                        <page string="Sales Information"
+                              invisible="staff_category != 'sales'">
                             <group>
-                                <field name="campaigns_managed"/>
-                                <field name="marketing_skills"/>
+                                <field name="campaigns_managed"
+                                       required="staff_category == 'sales'"/>
+                                <field name="marketing_skills"
+                                       required="staff_category == 'sales'"/>
                             </group>
                         </page>
-                        <page string="Cleaning Information">
+
+                        <!-- Cleaning Information Page -->
+                        <page string="Cleaning Information"
+                              invisible="staff_category != 'cleaning'">
                             <group>
-                                <field name="cleaning_schedule"/>
-                                <field name="equipment_handled"/>
+                                <field name="cleaning_schedule"
+                                       required="staff_category == 'cleaning'"/>
+                                <field name="equipment_handled"
+                                       required="staff_category == 'cleaning'"/>
                             </group>
                         </page>
                     </notebook>
@@ -65,7 +93,6 @@
                 <field name="name"/>
                 <field name="market_id"/>
                 <field name="staff_category"/>
-                <field name="staff_type"/>
                 <field name="total_staff"/>
             </tree>
         </field>
