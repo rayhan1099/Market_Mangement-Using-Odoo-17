@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Market Management Menu -->
+
     <menuitem id="market_management_menu"
               name="Market Management"
               sequence="17"/>
 
-    <!-- Markets Submenu -->
+
     <menuitem id="menu_market_root_menu"
               name="Market"
               parent="market_management_menu"/>
@@ -35,10 +35,7 @@
               action="action_shop_tenant"
     />
 
-    <menuitem id="menu_staff_management"
-              name="Staff"
-              parent="menu_market_root_menu"
-              action="staff_management_action"/>
+
       <menuitem id="menu_parking_management"
               name="Parking"
               parent="market_management_menu"/>
@@ -58,5 +55,32 @@
               parent="menu_parking_management"
               action="action_security_camera"/>
 
+<!--       <menuitem id="menu_sale_order_custom"-->
+<!--              name="Sale Orders"-->
+<!--              parent="menu_market_root_menu"-->
+<!--              action="action_sale_order_custom"/>-->
+
+
+   <menuitem id="menu_employee_management"
+              name="Employee"
+              parent="market_management_menu"/>
+
+    <menuitem id="menu_hr_employee"
+              name="Employees"
+              action="hr.open_view_employee_list_my"
+              parent="menu_employee_management"/>
+
+    <menuitem id="hr_menu_contract"
+              name="Contracts"
+              action="hr_contract.action_hr_contract"
+              parent="menu_employee_management"
+              groups="hr_contract.group_hr_contract_manager"/>
+
+
+    <!-- Menu Item for Lease Agreement Management -->
+    <menuitem id="menu_lease_agreement"
+              name="Lease Agreement"
+              parent="menu_shop_root"
+              action="action_lease_agreement"/>
 
 </odoo>

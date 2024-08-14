@@ -1,5 +1,12 @@
 from odoo import models, fields, api
 from datetime import timedelta
+from odoo.exceptions import UserError
+import base64
+import io
+from PyPDF2 import PdfFileReader
+
+
+
 
 class LeaseAgreement(models.Model):
     _name = 'lease.agreement'
@@ -31,7 +38,7 @@ class LeaseAgreement(models.Model):
     def _compute_reminder_date(self):
         for record in self:
             if record.end_date:
-                reminder_period = timedelta(days=30)  # Reminder period before lease end date
+                reminder_period = timedelta(days=5)  # Reminder period before lease end date
                 record.reminder_date = record.end_date - reminder_period
 
     @api.model
@@ -43,5 +50,18 @@ class LeaseAgreement(models.Model):
             if template:
                 template.send_mail(agreement.id, force_send=True)
             else:
-                # Handle case where template is not found
                 _logger.error("Lease reminder email template not found.")
+
+    def action_view_pdf(self):
+        if not self.digital_copy:
+            raise UserError(_("No digital copy found!"))
+
+        # Generate the PDF URL
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        pdf_url = f'/web/content/{self._name}/{self.id}/digital_copy'
+
+        return {
+            'type': 'ir.actions.act_url',
+            'url': base_url + pdf_url,
+            'target': 'new',  # Opens in a new tab
+        }

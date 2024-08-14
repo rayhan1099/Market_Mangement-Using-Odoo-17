@@ -97,8 +97,8 @@ class SecurityCamera(models.Model):
     _description = 'Security Camera'
 
     name = fields.Char(string='Camera Name', required=True)
-    location = fields.Char(string='Location')
     monitored_spaces = fields.One2many('parking.space', 'security_camera_id', string='Monitored Spaces')
+
 
     def monitor_parking_space(self, space_id):
         space = self.env['parking.space'].browse(space_id)
