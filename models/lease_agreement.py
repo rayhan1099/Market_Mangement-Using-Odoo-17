@@ -52,16 +52,4 @@ class LeaseAgreement(models.Model):
             else:
                 _logger.error("Lease reminder email template not found.")
 
-    def action_view_pdf(self):
-        if not self.digital_copy:
-            raise UserError(_("No digital copy found!"))
 
-        # Generate the PDF URL
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        pdf_url = f'/web/content/{self._name}/{self.id}/digital_copy'
-
-        return {
-            'type': 'ir.actions.act_url',
-            'url': base_url + pdf_url,
-            'target': 'new',  # Opens in a new tab
-        }

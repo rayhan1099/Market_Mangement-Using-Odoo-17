@@ -27,7 +27,7 @@
                             <field name="tenant_id" options="{'no_create': True}"/>
                             <field name="rent_start_date"/>
                             <field name="rent_end_date"/>
-                            <field name="shop_rent" readonly="1"/> <!-- Added shop_rent field -->
+                            <field name="shop_rent" readonly="1"/>
                         </group>
                     </sheet>
                 </form>

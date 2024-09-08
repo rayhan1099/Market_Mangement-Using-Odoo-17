@@ -12,6 +12,7 @@
                 <field name="end_date"/>
                 <field name="state"/>
                 <field name="reminder_date"/>
+                <field name="digital_copy" widget="pdf_viewer" optional="hide"/>
             </tree>
         </field>
     </record>
@@ -25,17 +26,14 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="tenant_id"/>
-                        <field name="shop_id"/>
+                        <field name="tenant_id" widget="selection"/>
+                        <field name="shop_id" widget="selection"/>
                         <field name="start_date"/>
                         <field name="end_date"/>
-                        <field name="digital_copy"/>
                         <field name="state" readonly="1"/>
                         <field name="reminder_date" readonly="1"/>
+                        <field name="digital_copy" widget="pdf_viewer"/>
                     </group>
-                    <footer>
-                        <button name="action_view_pdf" type="object" string="View PDF" class="oe_highlight"/>
-                    </footer>
                 </sheet>
             </form>
         </field>

@@ -16,5 +16,7 @@ access_parking_transaction_manager,parking.transaction.manager,model_parking_tra
 access_security_camera_user,security.camera.user,model_security_camera,group_market_management_user,1,1,1,1
 access_security_camera_manager,security.camera.manager,model_security_camera,group_market_management_manager,1,1,1,1
 
+
 access_lease_agreement_user,lease.agreement.user,model_lease_agreement,group_market_management_user,1,1,1,1
 access_lease_agreement_manager,lease.agreement.manager,model_lease_agreement,group_market_management_manager,1,1,1,1
+

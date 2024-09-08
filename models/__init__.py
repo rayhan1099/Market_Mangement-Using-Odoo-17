@@ -5,4 +5,5 @@ from . import parking_space
 from . import tenant
 from . import lease_agreement
 from . import staff_management
+# from . import market_event
 # from . import sale

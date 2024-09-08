@@ -20,8 +20,8 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="space_id"/>
-                            <field name="tenant_id"/>
+                            <field name="space_id" widget="selection"/>
+                            <field name="tenant_id" widget="selection"/>
                             <field name="occupied_by"/>
                             <field name="start_time"/>
                             <field name="end_time"/>
